@@ -212,7 +212,17 @@ int insertLast(headNode* h, int key) {
  * list의 첫번째 노드 삭제
  */
 int deleteFirst(headNode* h) {
+	listNode* temp; 
+	
+	if(h->first== NULL) {
 
+		return 0;
+	}
+	else { 
+		temp = h->first;
+		h->first = h->first->link;  
+	}
+	free(temp); 
 
 	return 0;
 }
@@ -222,15 +232,54 @@ int deleteFirst(headNode* h) {
  * list에서 key에 대한 노드 삭제
  */
 int deleteNode(headNode* h, int key) {
+	listNode* preNode = h->first; 
+	listNode* temp = h->first->link; 
 
-	return 0;
+	if (key == preNode->key) { 
+		h->first = preNode->link; 
+		preNode->link = NULL; 
+	}
+	else {
+		while (temp != NULL) { 
+            if (key == preNode->link->key) {  
+                preNode->link = temp->link;  
+                
+                return 0;
+            }
+            preNode = preNode->link;  
+        }
+	}
+	free(temp); 
 
+    return 0;	
 }
 
 /**
  * list의 마지막 노드 삭제
  */
 int deleteLast(headNode* h) {
+    listNode* preNode;
+    listNode* temp;
+        
+    if(h->first == NULL) {  
+	
+		return 0;
+    }
+    
+	if(h->first->link == NULL) {  
+		h->first = NULL;  
+    } 
+	else {  
+		preNode = h->first; 
+        temp = h->first->link;  
+            
+        while(temp->link != NULL) { 
+			preNode = temp;  
+            temp = temp->link;  
+        }
+        preNode->link = NULL;  
+    }
+	free(temp); 
 
 	return 0;
 }
