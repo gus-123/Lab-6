@@ -153,14 +153,56 @@ int insertFirst(headNode* h, int key) {
 
 /* 리스트를 검색하여, 입력받은 key보다 큰값이 나오는 노드 바로 앞에 삽입 */
 int insertNode(headNode* h, int key) {
+    listNode* preNode = h->first; 
+    listNode* node = (listNode*)malloc(sizeof(listNode)); 
+	node->key = key; 
 
-	return 0;
+    node->link = NULL;  
+
+    if (h->first == NULL) { 
+        h->first = node;  
+    }
+    else { 
+		if (node->key < h->first->key) {
+			node->link = h->first->link;  
+            h->first->link = node;  
+        }
+        else {
+            while (preNode->link) { 
+				if (node->key < preNode->link->key) {
+					break;
+				}
+                preNode = preNode->link; 
+            }
+            node->link = preNode->link;  
+            preNode->link = node; 
+        }
+    }
+
+    return 0;
 }
 
 /**
  * list에 key에 대한 노드하나를 추가
  */
 int insertLast(headNode* h, int key) {
+	listNode* temp; 
+	listNode* node = (listNode*)malloc(sizeof(listNode)); 
+	node->key = key; 
+    
+	node->link = NULL;  
+
+	if(h->first == NULL) {  
+		h->first = node;  
+
+		return 0;
+	}
+	
+	temp = h->first;  
+	while(temp->link != NULL) {  
+		temp = temp->link;  
+	}
+	temp->link = node; 
 
 	return 0;
 }
