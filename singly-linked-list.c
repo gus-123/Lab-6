@@ -261,7 +261,7 @@ int deleteLast(headNode* h) {
 	listNode* preNode;
     listNode* temp;
         
-    if(h->first == NULL) {  //head 노드가 nulldls 경우 모든 노드가 삭제 되었으므로 리턴
+    if(h->first == NULL) {  //head 노드가 null인 경우 모든 노드가 삭제 되었으므로 리턴
 	
 		return 0;
     }
@@ -270,7 +270,7 @@ int deleteLast(headNode* h) {
 		h->first = NULL;  //head에 null을 할당하여 남은 노드와의 연결을 해제
     } 
 	else {  //head 노드의 link가 null이 아닌 경우
-		preNode = h->first; //preNode는 head가 가리키느 노드를 할당
+		preNode = h->first; //preNode는 head가 가리키는 노드를 할당
         temp = h->first->link;  //preNode의 다음 노드를 할당     
             
         while(temp->link != NULL) { //temp의 link가 null이 아닐 때 까지 한 노드씩 다음 노드로 이동
@@ -291,7 +291,7 @@ int deleteLast(headNode* h) {
 int invertList(headNode* h) {
 	listNode* nextNode = h->first; //head가 참조하는 첫번째 노드를 할당
 	listNode* currentNode = NULL;  //현재 위치를 참조하는 할당
-	listNode* preNode = NULL;  //이전 위치를 참조하느 할당
+	listNode* preNode = NULL;  //이전 위치를 참조하는 할당
 
 	while (nextNode!= NULL) {  //head가 참조하는 첫번째 노드가 null이 아닌 경우
 		preNode = currentNode;  //preNode는 currentNode 위치로 이동
@@ -299,7 +299,7 @@ int invertList(headNode* h) {
 		nextNode = nextNode->link;  //nextNode는 다음 노드 위치로 이동
 		currentNode->link = preNode;  //currentNode의 link에 preNode를 할당하여 역순 만듦
 	}
-	h->first = currentNode;  //currentNode가 마지막 노드를 가리킬 때, head는 currentNord를 참조 함
+	h->first = currentNode;  //currentNode가 마지막 노드를 가리킬 때, head는 currentNode를 참조 함
 
 	return 0;
 }
@@ -326,3 +326,4 @@ void printList(headNode* h) {
 
 	printf("  items = %d\n", i);
 }
+
